@@ -22,18 +22,17 @@ parts:
         organize:
             'slack-wrapper': bin/
 
-    shm-preloader:
-        plugin: cmake
-        source: shm-preloader
-        build-packages:
-            - gcc
-            - g++
-
 apps:
     slack:
         autostart: slack.desktop
         desktop: usr/share/applications/slack.desktop
-        command: bin/slack-wrapper
+        command-chain:
+            - bin/slack-migrate-user-config.sh
+        command: usr/bin/slack
+        environment:
+            # Correct the TMPDIR path for Chromium Framework/Electron to
+            # ensure libappindicator has readable resources
+            TMPDIR: $XDG_RUNTIME_DIR
         extensions: [gnome-3-34]
         plugs:
             - bluez
