@@ -55,7 +55,10 @@ apps:
             - x11
 
 plugs:
-   config-slack:
+  browser-sandbox:
+    interface: browser-support
+    allow-sandbox: true
+  config-slack:
      interface: personal-files
      read:
          - $HOME/.config/Slack
