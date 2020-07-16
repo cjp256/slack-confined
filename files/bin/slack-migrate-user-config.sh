@@ -12,4 +12,4 @@ if [ -d "$CLASSIC_CONFIG" ] && [ ! -d "$STRICT_SNAP_CONFIG" ]; then
   cp -ar "$CLASSIC_CONFIG" "$STRICT_SNAP_CONFIG"
 fi
 
-exec ${SNAP}/usr/bin/slack
+exec "$@"
